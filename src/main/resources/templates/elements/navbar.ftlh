@@ -1,18 +1,22 @@
 <#macro navbar user>
-    <div>
-        <a href="/"></a>
-        <span>Free Shop</span>
-        <#if user.email??>
-            <div>
-                <a href="/profile">
-                    <img src="<#if user.avatar??>/images/${user.avatar.id}<#else>/img/avatar.png</#if>" alt="mdo"
-                         width="32" height="32">
-                </a>
-            </div>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a href="/">
+                <span class="navbar-brand mb-0 h1">Free Shop</span>
+            </a>
+            <#if user.email??>
+                <div class="dropdown text-end">
+                    <a href="/profile">
+                        <img src="<#if user.avatar??>/images/${user.avatar.id}<#else>/img/avatar.jpg</#if>" alt="mdo"
+                             width="32" height="32" class="rounded-circle">
+                    </a>
+                </div>
             <#else>
-            <button type="button" onclick="window.location.href='/login'">
-                Prisijungti
-            </button>
-        </#if>
-    </div>
+                <button class="btn btn-light my-2 my-sm-0" type="button"
+                        onclick="window.location.href = '/login'">
+                    Prisijungti
+                </button>
+            </#if>
+        </div>
+    </nav>
 </#macro>

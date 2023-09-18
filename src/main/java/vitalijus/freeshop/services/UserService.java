@@ -82,39 +82,13 @@ public class UserService {
         } else return false;
     }
 
-    public void editProfile(String name, String phoneNumber, MultipartFile avatar, String email) throws IOException {
+    public void editProfile(String name, String phoneNumber, String email) throws IOException {
         User userFromDb = userRepository.findByEmail(email);
         if (userFromDb == null) throw new UsernameNotFoundException("Email " + email + " is not found");
         userFromDb.setName(name);
         userFromDb.setPhoneNumber(phoneNumber);
-        if (avatar.getSize() != 0) {
-            Image imageAvatar = toImageEntity(avatar);
-            imageAvatar.setBytes(compressBytes(imageAvatar.getBytes()));
-            userFromDb.setAvatar(imageAvatar);
-        }
         log.info("Edit user: " + userFromDb.getEmail());
         userRepository.save(userFromDb);
-    }
-
-
-    private byte[] compressBytes(byte[] data) {
-        Deflater deflater = new Deflater();
-        deflater.setInput(data);
-        deflater.finish();
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
-        byte[] buffer = new byte[1024];
-        while (!deflater.finished()) {
-            int count = deflater.deflate(buffer);
-            outputStream.write(buffer, 0, count);
-        }
-        try {
-            outputStream.close();
-        } catch (IOException e) {
-            log.error("Cannot compress Bytes");
-        }
-        System.out.println("Compressed Image Byte Size - "
-                + outputStream.toByteArray().length);
-        return outputStream.toByteArray();
     }
 
     public User getUserByPrincipal(Principal principal) {
@@ -126,13 +100,4 @@ public class UserService {
         return user;
     }
 
-    private Image toImageEntity(MultipartFile file) throws IOException {
-        Image image = new Image();
-        image.setName(file.getName());
-        image.setOriginalFileName(file.getOriginalFilename());
-        image.setContentType(file.getContentType());
-        image.setSize(file.getSize());
-        image.setBytes(file.getBytes());
-        return image;
-    }
 }
