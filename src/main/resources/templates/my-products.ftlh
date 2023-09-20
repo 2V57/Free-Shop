@@ -7,6 +7,7 @@
    aria-expanded="true" aria-controls="collapseExample">
     Pridėti prekę
 </a>
+
 <div class="collapse mb-3" id="collapseExample" style="">
     <form action="/product/create" method="post" enctype="multipart/form-data">
         <div class="form-group">

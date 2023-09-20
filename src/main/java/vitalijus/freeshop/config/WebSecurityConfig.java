@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/product/**", "/static/**", "/img/**", "/registration",
                         "/images/**", "/activate/**",
-                        "/register-successfully", "/user/**")
+                        "/register-successfully", "/user/**", "/lang/**", "/js/**", "/login")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

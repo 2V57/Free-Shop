@@ -1,10 +1,17 @@
 <#import "elements/main.ftlh" as main>
+
+
+
 <@main.page true user>
-    <h1 style="text-align: center">Autorizacija</h1>
+
+
+
+    <h1 style="text-align: center"><@spring.message 'user.name'/></h1> <!-- Autorizacija -->
+
     <hr>
     <form action="/login " method="post">
         <div class="form-group">
-            <label for="email">El.paštas</label>
+            <label for="email">El. paštas</label>
             <input type="email" class="form-control <#if RequestParameters.error??>is-invalid</#if>" id="email" name="username">
             <div id="email" class="invalid-feedback">
                 Netaisingai nurodytas

@@ -1,6 +1,6 @@
 <#import "elements/main.ftlh" as main>
 <@main.page true user>
-    <h1 style="text-align: center">Prekių paieška</h1>
+    <h1 style="text-align: center"><@spring.message 'product.search'/></h1>
     <form method="get" action="/">
         <div class="form-row">
             <div class="form-group col-md-2">
