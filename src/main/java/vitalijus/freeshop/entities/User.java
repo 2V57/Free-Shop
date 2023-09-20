@@ -43,6 +43,12 @@ public class User implements UserDetails {
     private List<Product> products = new ArrayList<>();
 
 
+    public boolean isAdmin() {
+        return roles.contains(Role.ROLE_ADMIN);
+    }
+
+
+
     // security config - UserDetails interface method override!
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -17,7 +17,8 @@ import vitalijus.freeshop.repositories.UserRepository;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.zip.Deflater;
 
 @Service
@@ -89,6 +90,37 @@ public class UserService {
         userFromDb.setPhoneNumber(phoneNumber);
         log.info("Edit user: " + userFromDb.getEmail());
         userRepository.save(userFromDb);
+    }
+
+    public List<User> list() {
+        return userRepository.findAll();
+    }
+
+    public void banUser(Long id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) {
+            if (user.isActive()) {
+                user.setActive(false);
+                log.info("Ban user with id = {}; email: {}", user.getId(), user.getEmail());
+            } else {
+                user.setActive(true);
+                log.info("Unban user with id = {}; email: {}", user.getId(), user.getEmail());
+            }
+        }
+        userRepository.save(user);
+    }
+
+    public void changeUserRoles(User user, Map<String, String> form) {
+        Set<String> roles = Arrays.stream(Role.values())
+                .map(Role::name)
+                .collect(Collectors.toSet());
+        user.getRoles().clear();
+        for (String key : form.keySet()) {
+            if (roles.contains(key)) {
+                user.getRoles().add(Role.valueOf(key));
+            }
+        }
+        userRepository.save(user);
     }
 
     public User getUserByPrincipal(Principal principal) {

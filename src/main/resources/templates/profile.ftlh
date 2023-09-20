@@ -39,6 +39,14 @@
             </form>
         </div>
         <br>
+
+        <#if user.isAdmin()>
+            <a class="btn btn-dark mb-3" style="text-align: center; width: 100%"
+               href="/admin">
+                Administratoriaus skydelis
+            </a><br>
+        </#if>
+
         <a class="btn btn-dark mb-3" style="text-align: center; width: 100%"
            href="/my/products">
             Mano prekės
