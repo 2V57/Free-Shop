@@ -4,23 +4,25 @@
     <form method="get" action="/">
         <div class="form-row">
             <div class="form-group col-md-2">
-        <label for="searchCity">Miestas</label>
+        <label for="searchCity"><@spring.message 'city'/></label>
         <select id="searchCity" name="searchCity" class="form-control">
-            <option value="searchCity">Miestas nepasirinktas</option>
+            <option value="searchCity"><@spring.message 'the.city.is.not.selected'/></option>
             <#list towns as town>
                 <option <#if searchCity == town>selected</#if> value="${town}">${town}</option>
             </#list>
         </select>
             </div>
             <div class="form-group col-md-10">
-            <label for="searchWord">Paieška pagal skelbimo pavadinimą</label>
-            <input type="text" name="searchWord" <#if searchWord??>value="${searchWord}"</#if> class="form-control" id="searchWord">
+                <label for="searchWord"><@spring.message 'search.by.ad.title'/></label>
+                <input type="text" name="searchWord" <#if searchWord??>value="${searchWord}"</#if> class="form-control" id="searchWord" />
+            </div>
         </div>
-            <button style="width: 100%" type="submit" class="btn btn-dark">Paieška</button>
+            <button style="width: 100%" type="submit" class="btn btn-dark"><@spring.message 'search'/></button>
         </div>
-    </form>
-    <hr>
 
+    </form>
+
+    <hr />
     <div class="card-columns">
     <#list products as product>
         <a href="/product/${product.id}" class="product-link">
@@ -41,7 +43,7 @@
             </div>
         </a>
     <#else>
-        <h1 style="text-align: center">Nerastas</h1>
+        <h1 style="text-align: center"><@spring.message 'not.found'/></h1>
     </#list>
     </div>
 

@@ -8,18 +8,14 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import vitalijus.freeshop.entities.Image;
 import vitalijus.freeshop.entities.Role;
 import vitalijus.freeshop.entities.User;
 import vitalijus.freeshop.repositories.UserRepository;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.zip.Deflater;
 
 @Service
 public class UserService {
@@ -88,7 +84,7 @@ public class UserService {
         if (userFromDb == null) throw new UsernameNotFoundException("Email " + email + " is not found");
         userFromDb.setName(name);
         userFromDb.setPhoneNumber(phoneNumber);
-        log.info("Edit user: " + userFromDb.getEmail());
+        log.info("MyVeryImportantServiceEdit user: " + userFromDb.getEmail());
         userRepository.save(userFromDb);
     }
 

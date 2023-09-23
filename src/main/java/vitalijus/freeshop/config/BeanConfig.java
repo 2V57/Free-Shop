@@ -20,8 +20,6 @@ public class BeanConfig implements WebMvcConfigurer{
         slr.setDefaultLocale(Locale.US);
         return slr;
     }
-
-
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
