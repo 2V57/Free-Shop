@@ -30,4 +30,5 @@ Programoje 16 klasių.
 - Pakeitus prisijungimo prie DB duomenis, programa lengvai persikelia ant kitos duomenų bazės 
 ---
 #Testai
+---
 Panauduoti paprasti testai Unit ir Mockito.
